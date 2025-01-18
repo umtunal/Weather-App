@@ -1,27 +1,26 @@
 <template>
-  <div
-    class="flex flex-col min-h-screen font-Roboto bg-weather-primary"
-  >
-    <SiteNavigation />
-    <RouterView class="flex-1" v-slot="{ Component }">
-      <Transition name="page">
-        <component :is="Component" />
-      </Transition>
-    </RouterView>
+  <div class="min-h-screen bg-gray-100">
+    <header class="bg-primary text-white py-4">
+      <div class="container mx-auto px-4">
+        <h1 
+          class="text-2xl font-bold cursor-pointer hover:text-gray-300 transition-colors" 
+          @click="refreshPage"
+        >
+          Hava Durumu
+        </h1>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+      <WeatherSearch />
+    </main>
   </div>
 </template>
 
 <script setup>
-import { RouterView } from "vue-router";
-import SiteNavigation from "./components/SiteNavigation.vue";
-</script>
+import WeatherSearch from './components/WeatherSearch.vue'
 
-<style>
-.page-enter-active {
-  transition: 600ms ease all;
+const refreshPage = () => {
+  window.location.reload()
 }
-
-.page-enter-from {
-  opacity: 0;
-}
-</style>
+</script> 
